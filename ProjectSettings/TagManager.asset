@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Trees
+    uniqueID: 2460499007
+    locked: 0
+  - name: Hospital
+    uniqueID: 1008510941
+    locked: 0
+  - name: Soldiers
+    uniqueID: 684145985
+    locked: 0
+  - name: Helicopter
+    uniqueID: 3479489887
+    locked: 0
+  - name: HUD
+    uniqueID: 3124908409
+    locked: 0
