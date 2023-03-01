@@ -11,6 +11,7 @@ public class HelicopterController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TextMeshProUGUI soldiersInHelicopterNum;
     [SerializeField] private TextMeshProUGUI soldiersRescuedNum;
+    [SerializeField] private GameObject GameOverScreen;
     public Rigidbody2D rb;
     private Vector2 _movement;
     private bool IsAlive { get; set; } = true;
@@ -57,6 +58,7 @@ public class HelicopterController : MonoBehaviour
     {
         IsAlive = false;
         spriteRenderer.enabled = false;
+        GameOverScreen.SetActive(true);
         Debug.Log("Game Over"); // DebugPlaceholder
     }
 
