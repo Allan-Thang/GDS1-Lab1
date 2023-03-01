@@ -14,6 +14,10 @@ public class HelicopterController : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject youWinScreen;
     [SerializeField] private int victoryCondition;
+    [SerializeField] private AudioClip pickupAudio;
+    [SerializeField] private AudioClip crashAudio;
+    [SerializeField] private AudioClip rescueAudio;
+    [SerializeField] private AudioSource audioSource;
     public Rigidbody2D rb;
     private Vector2 _movement;
     private bool IsAlive { get; set; } = true;
@@ -63,8 +67,9 @@ public class HelicopterController : MonoBehaviour
     {
         IsAlive = false;
         spriteRenderer.enabled = false;
+        audioSource.clip = crashAudio;
+        audioSource.Play();
         gameOverScreen.SetActive(true);
-        Debug.Log("Game Over"); // DebugPlaceholder
     }
 
     private void HandleHospitalCollision()
@@ -81,6 +86,8 @@ public class HelicopterController : MonoBehaviour
         soldiersRescuedNum.text = _soldiersRescued.ToString();
         soldiers.Clear(); // Empty Helicopter
         soldiersInHelicopterNum.text = "0";
+        audioSource.clip = rescueAudio;
+        audioSource.Play();
     }
 
     private void HandleSoldierCollision(Collider2D soldierCollider2D)
@@ -92,5 +99,7 @@ public class HelicopterController : MonoBehaviour
         soldier.gameObject.GetComponent<SpriteRenderer>().enabled = false; // Make it disappear
         soldiers.Add(soldierCollider2D.gameObject.GetComponent<Soldier>()); // Add the Soldier to the Helicopter
         soldiersInHelicopterNum.text = soldiers.Count.ToString();
+        audioSource.clip = pickupAudio;
+        audioSource.Play();
     }
 }
