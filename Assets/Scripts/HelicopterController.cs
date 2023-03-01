@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HelicopterController : MonoBehaviour
@@ -31,9 +32,20 @@ public class HelicopterController : MonoBehaviour
         // Get a vector for movement based on input
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = Input.GetAxis("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Reset();
+        }
+
         if (_soldiersRescued < victoryCondition) return;
         youWinScreen.SetActive(true);
         IsAlive = false;
+    }
+
+    private void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void FixedUpdate()
