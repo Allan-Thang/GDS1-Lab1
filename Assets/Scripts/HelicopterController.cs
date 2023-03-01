@@ -15,13 +15,15 @@ public class HelicopterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Get a vector for movement based on input
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = Input.GetAxis("Vertical");
-        Debug.Log(soldiers.Count);
+        Debug.Log(soldiers.Count); // DebugHere
     }
 
     private void FixedUpdate()
     {
+        // Move the player independent of frame-rate
         rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
     }
 }
