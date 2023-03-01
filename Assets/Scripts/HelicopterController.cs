@@ -7,17 +7,19 @@ public class HelicopterController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
     public Rigidbody2D rb;
-    private Vector2 movement;
+    private Vector2 _movement;
+
+    private List<Soldier> _soldiers;
 
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxis("Horizontal");
-        movement.y = Input.GetAxis("Vertical");
+        _movement.x = Input.GetAxis("Horizontal");
+        _movement.y = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
+        rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
     }
 }
