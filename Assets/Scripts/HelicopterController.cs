@@ -11,7 +11,9 @@ public class HelicopterController : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private TextMeshProUGUI soldiersInHelicopterNum;
     [SerializeField] private TextMeshProUGUI soldiersRescuedNum;
-    [SerializeField] private GameObject GameOverScreen;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject youWinScreen;
+    [SerializeField] private int victoryCondition;
     public Rigidbody2D rb;
     private Vector2 _movement;
     private bool IsAlive { get; set; } = true;
@@ -25,14 +27,17 @@ public class HelicopterController : MonoBehaviour
         // Get a vector for movement based on input
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = Input.GetAxis("Vertical");
-        Debug.Log(soldiers.Count); // DebugPlaceholder
+        if (_soldiersRescued < victoryCondition) return;
+        youWinScreen.SetActive(true);
+        IsAlive = false;
     }
 
     private void FixedUpdate()
     {
         // Move the player independent of frame-rate
         if (!IsAlive) return;
-        rb.MovePosition(rb.position + _movement * (moveSpeed * Time.fixedDeltaTime));
+        float movementPenalty = 1 - (float)(0.15 * soldiers.Count);
+        rb.MovePosition(rb.position + _movement * (moveSpeed * movementPenalty * Time.fixedDeltaTime));
     }
 
     private void OnTriggerEnter2D(Collider2D trigCollider2D)
@@ -58,7 +63,7 @@ public class HelicopterController : MonoBehaviour
     {
         IsAlive = false;
         spriteRenderer.enabled = false;
-        GameOverScreen.SetActive(true);
+        gameOverScreen.SetActive(true);
         Debug.Log("Game Over"); // DebugPlaceholder
     }
 
@@ -71,7 +76,7 @@ public class HelicopterController : MonoBehaviour
         {
             _soldiersRescued++;
             soldier.pickedUp = false;
-            soldier.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            soldier.gameObject.SetActive(false);
         }
         soldiersRescuedNum.text = _soldiersRescued.ToString();
         soldiers.Clear(); // Empty Helicopter
