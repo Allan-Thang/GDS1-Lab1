@@ -310,7 +310,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -277193147
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 97568c8695f85d44daee2e081369f417, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -351,6 +351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rb: {fileID: 363250247}
+  soldiers: []
+  maxSoldiers: 3
 --- !u!50 &363250247
 Rigidbody2D:
   serializedVersion: 4

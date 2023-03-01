@@ -9,13 +9,15 @@ public class HelicopterController : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 _movement;
 
-    private List<Soldier> _soldiers;
+    public List<Soldier> soldiers;
+    public int maxSoldiers = 3;
 
     // Update is called once per frame
     void Update()
     {
         _movement.x = Input.GetAxis("Horizontal");
         _movement.y = Input.GetAxis("Vertical");
+        Debug.Log(soldiers.Count);
     }
 
     private void FixedUpdate()
