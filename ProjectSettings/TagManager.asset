@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Soldier
+  - Hospital
+  - Tree
+  - GameOverUI
   layers:
   - Default
   - TransparentFX
@@ -40,4 +44,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 1008510941
+    locked: 0
+  - name: Game
+    uniqueID: 4017774149
+    locked: 0
+  - name: Foreground
+    uniqueID: 2460499007
     locked: 0
